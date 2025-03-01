@@ -10,7 +10,7 @@ function validateForm() {
   var password = document.getElementById("password").value;
 
   //validasi username dan password, username dan password bisa diganti sesuai keinginan
-  if (username === "Rany" && password === "Sylchester") {
+  if (username === "Zhevira" && password === "Sylchester") {
     Swal.fire({
       icon: "success",
       title: "Login berhasil!",
@@ -21,7 +21,7 @@ function validateForm() {
       window.location.reload()
       window.location.href = "text.html";
     });
-  } else if(username === "Rany" && password === "30Desember"){
+  } else if(username === "Vira" && password === "4Juli"){
     Swal.fire({
       icon: "success",
       title: "Login berhasil!",

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="info-bar">
+            <label for="mode">Mode: </label>
+            <select id="mode">
+                <option value="pvc">Player vs Komputer</option>
+                <option value="pvp">Player vs Player</option>
+            </select>
+            <label for="level">Level: </label>
+            <select id="level">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <span id="playerInfo"></span>
+        </div>
+        <div id="status">Giliran: <span id="turn">X</span></div>
+        <div class="board" id="board">
+            <!-- Kotak papan akan di-generate oleh JS -->
+        </div>
+        <div id="result"></div>
+        <button id="resetBtn">Reset Game</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,36 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Font Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
-  <!-- Style CSS -->
-  <link rel="stylesheet" href="./styles/style.css">
-  <title>Halaman Login</title>
+  <title>Portofolio Daffa Reivan</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="login_container">
-    <h2>Hi👋🏼 Login dulu</h2>
-    <form id="loginForm" class="login_form">
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button type="submit" id="loginBtn">Login</button>
-    </form>
-    <p class="login_description">
-      pssstttt, username dan passwordnya dari dapa
-    </p>
-  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">Sylchester</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <section id="hero" class="hero">
+    <div class="container">
+      <img src="./img/me.jpg" alt="Foto Profil" class="profile-img">
+      <h1>Daffa Reivan Fathur Rahman</h1>
+      <p class="tagline">Web Developer | Backend Developer</p>
+    </div>
+  </section>
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>Saya mulai suka pemrograman sejak SD. Karena itu, saya mungkin sudah belajar sekitar 5 tahun. Saya memiliki
+        pengalaman dalam pemrograman web dengan menggunakan HTML, CSS, JavaScript, PHP, dan MySQL. Saya juga memiliki
+        pengalaman sebagai leader di tempat magang saya, yaitu di Pusdatin Kementerian Perhubungan. Dan saya juga sudah
+        lulus sertifikasi BNSP sebagai Junior Coder
+    </div>
+  </section>
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>PHP</li>
+        <li>MySQL</li>
+      </ul>
+    </div>
+  </section>
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <h2>Portfolio</h2>
+      <div class="portfolio-items">
+        <div class="portfolio-item">
+          <div class="carousel">
+            <img src="./img/dashboard-absensi.png" class="carousel-img active" alt="Absensi 1">
+            <img src="./img/rekap-absensi.png" class="carousel-img" alt="Absensi 2">
+            <img src="./img/list-activity.png" class="carousel-img" alt="Absensi 3">
+            <img src="./img/activity-form.png" class="carousel-img" alt="Absensi 4">
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>Website Absensi</h3>
+          <p>Website yang digunakan para peserta magang atau prakerin di Pusdatin Kementerian Perhubungan</p>
+          <a href="https://github.com/Daffa-Qiao/Absensi-Prakerin-" class="see-more-btn" target="_blank">Lihat
+            Selengkapnya</a>
+        </div>
+        <div class="portfolio-item">
+          <div class="carousel">
+            <img src="./img/bot-menu.png" class="carousel-img active" alt="Bot 1">
+            <img src="./img/bot-hd.png" class="carousel-img" alt="Bot 2">
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>Vetkin MD</h3>
+          <p>Whatsapp Bot multifungsi untuk keperluan grup dan pribadi (download video TikTok, IG Reels, FB, dll).</p>
+          <a href="https://github.com/Daffa-Qiao/Vetkin-MD" class="see-more-btn" target="_blank">Lihat Selengkapnya</a>
+        </div>
+        <div class="portfolio-item">
+          <div class="carousel">
+            <img src="./img/smkn1bekasi-home.png" class="carousel-img active" alt="SMKN 1 Bekasi 1">
+            <img src="./img/smkn1bekasi-artikel.png" class="carousel-img" alt="SMKN 1 Bekasi 2">
+            <img src="./img/smkn1bekasi-pengumuman.png" class="carousel-img" alt="SMKN 1 Bekasi 3">
+            <img src="./img/smkn1bekasi-prestasi.png" class="carousel-img" alt="SMKN 1 Bekasi 4">
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>Web SMKN 1 Kota Bekasi</h3>
+          <p>Website resmi SMK Negeri 1 Kota Bekasi, pusat informasi sekolah, berita, dan layanan online.</p>
+          <a href="https://dickybulin26.github.io/smkn1kotabekasi/" class="see-more-btn" target="_blank">Lihat Selengkapnya</a>
+        </div>
+        <div class="portfolio-item">
+          <div class="carousel">
+            <img src="https://via.placeholder.com/400x300?text=Coming+Soon" class="carousel-img active" alt="Coming Soon">
+          </div>
+          <h3>Coming Soon</h3>
+          <p>Project baru akan segera hadir di sini. Nantikan update selanjutnya!</p>
+          <a href="#" class="see-more-btn" style="pointer-events:none;opacity:0.6;">Segera Hadir</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="minigame" class="minigame">
+    <div class="container">
+      <h2>Mini Game</h2>
+      <div class="minigame-frame">
+        <div class="minigame-item">
+          <h3>Tebak Angka</h3>
+          <a href="./game/game/tebak-angka/index.html" class="see-more-btn" target="_blank">Mainkan Sekarang</a>
+        </div>
+        <div class="minigame-item">
+          <h3>Tic Tac Toe</h3>
+          <a href="./game/game/tictactoe/index.html" class="see-more-btn" target="_blank">Mainkan Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <form id="contact-form">
+        <input type="text" id="nama" placeholder="Nama" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="pesan" placeholder="Pesan" required></textarea>
+        <button type="submit">Kirim</button>
+      </form>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Daffa Reivan. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-<!-- SweetAlery -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Main JS -->
-<script type="application/javascript" src="./scripts/index.js"></script>
 
 </html>

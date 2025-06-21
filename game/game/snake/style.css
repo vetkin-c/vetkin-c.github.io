@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  --primary: #e3f0ff;         /* biru muda sangat terang */
+  --secondary: #3a8dde;       /* biru muda utama */
+  --accent: #5ec6fa;          /* biru aksen */
+  --text: #1a2233;            /* biru gelap untuk teks */
+  --muted: #5e7ca3;           /* biru keabu-abuan */
+}
+
+body {
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+#score {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+#instructions {
+    margin: 15px 0;
+    color: white;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+#instructions p {
+    margin: 5px 0;
+}
+
+#gameControls {
+    margin: 20px 0;
+}
+
+.game-btn {
+    background: linear-gradient(45deg, var(--accent), var(--secondary));
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-weight: 600;
+}
+
+.game-btn:hover {
+    background: linear-gradient(45deg, var(--secondary), var(--accent));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.game-btn:disabled {
+    background: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+canvas {
+    background: var(--primary);
+    border: 3px solid white;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+} 

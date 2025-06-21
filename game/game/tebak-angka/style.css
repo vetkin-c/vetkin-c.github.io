@@ -1,40 +1,278 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    /* Prevent zoom on mobile */
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: clamp(20px, 4vw, 40px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 90vw;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    color: #333;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #333;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+p {
+    color: #666;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Screen management */
+.screen {
+    width: 100%;
+}
+
+/* Instructions styling */
+.instructions {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.instructions h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.instructions ul {
+    text-align: left;
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
-.container {
-    background: #fff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
+
+.instructions li {
+    color: #555;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.4;
 }
-input[type="number"] {
-    padding: 8px;
-    width: 150px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+.instructions li:before {
+    content: "•";
+    color: #667eea;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
 }
-button {
-    padding: 8px 16px;
+
+.instructions li:last-child {
+    margin-bottom: 0;
+}
+
+/* Center button styling */
+.center-btn {
+    display: block;
+    margin: 20px auto;
+    padding: clamp(12px, 3vw, 18px) clamp(24px, 6vw, 36px);
     border: none;
-    background: #007bff;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
     color: #fff;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: clamp(16px, 4vw, 18px);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    min-height: 50px;
+    min-width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+.center-btn:hover {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.center-btn:active {
+    transform: translateY(0);
+}
+
+/* Game controls */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+input[type="number"] {
+    padding: clamp(10px, 2vw, 15px);
+    width: clamp(120px, 40vw, 200px);
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: clamp(14px, 3vw, 16px);
+    text-align: center;
+    transition: border-color 0.3s ease;
+    /* Better touch target */
+    min-height: 44px;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    padding: clamp(10px, 2vw, 15px) clamp(16px, 4vw, 24px);
+    border: none;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: clamp(14px, 3vw, 16px);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    /* Better touch target */
+    min-height: 44px;
+    min-width: 80px;
+}
+
 button:hover {
-    background: #0056b3;
+    background: linear-gradient(45deg, #764ba2, #667eea);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
+
+button:active {
+    transform: translateY(0);
+}
+
 #message {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: clamp(16px, 4vw, 18px);
     min-height: 24px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#message.correct {
+    background: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+#message.high {
+    background: rgba(255, 152, 0, 0.1);
+    color: #f57c00;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+#message.low {
+    background: rgba(244, 67, 54, 0.1);
+    color: #d32f2f;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    input[type="number"] {
+        margin-bottom: 10px;
+        margin-right: 0;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    button {
+        margin: 5px;
+    }
+    
+    .instructions {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 20px;
+        margin: 5px;
+    }
+    
+    input[type="number"] {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    .instructions {
+        padding: 12px;
+    }
+}
+
+/* Prevent text selection and context menu on mobile */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Disable pull-to-refresh on mobile */
+html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 } 

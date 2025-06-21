@@ -9,11 +9,31 @@
 <body>
     <div class="container">
         <h1>Game Tebak Angka</h1>
-        <p>Saya menyimpan angka antara 1 sampai 100. Tebak angkanya!</p>
-        <input type="number" id="guessInput" min="1" max="100" placeholder="Masukkan tebakan...">
-        <button id="guessBtn">Tebak!</button>
-        <p id="message"></p>
-        <button id="restartBtn" style="display:none;">Main Lagi</button>
+        
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen">
+            <div class="instructions">
+                <h2>Petunjuk Bermain:</h2>
+                <ul>
+                    <li>Saya akan menyimpan angka antara 1 sampai 100</li>
+                    <li>Tebak angka tersebut dengan memasukkan angka</li>
+                    <li>Saya akan memberi petunjuk "terlalu besar" atau "terlalu kecil"</li>
+                    <li>Tebak dengan sesedikit mungkin percobaan!</li>
+                </ul>
+            </div>
+            <button id="startBtn" class="center-btn">START GAME</button>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen" style="display:none;">
+            <p>Saya menyimpan angka antara 1 sampai 100. Tebak angkanya!</p>
+            <div class="game-controls">
+                <input type="number" id="guessInput" min="1" max="100" placeholder="Masukkan tebakan...">
+                <button id="guessBtn">Tebak!</button>
+            </div>
+            <p id="message"></p>
+            <button id="restartBtn" class="center-btn" style="display:none;">MAIN LAGI</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

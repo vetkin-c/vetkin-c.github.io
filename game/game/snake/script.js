@@ -4,6 +4,12 @@ const scoreElement = document.getElementById('score');
 const startBtn = document.getElementById('startBtn');
 const restartBtn = document.getElementById('restartBtn');
 
+// Mobile control buttons
+const upBtn = document.getElementById('upBtn');
+const downBtn = document.getElementById('downBtn');
+const leftBtn = document.getElementById('leftBtn');
+const rightBtn = document.getElementById('rightBtn');
+
 const gridSize = 20;
 let snake = [];
 let food = {};
@@ -13,6 +19,27 @@ let changingDirection = false;
 let gameRunning = false;
 let gameOver = false;
 let gameLoop = null;
+
+// Responsive canvas setup
+function setupResponsiveCanvas() {
+    const container = canvas.parentElement;
+    const containerWidth = container.clientWidth;
+    const containerHeight = window.innerHeight * 0.6; // 60% of viewport height
+    
+    // Set canvas size based on container
+    const maxWidth = Math.min(400, containerWidth - 40);
+    const maxHeight = Math.min(400, containerHeight);
+    
+    // Maintain aspect ratio
+    const size = Math.min(maxWidth, maxHeight);
+    
+    canvas.width = size;
+    canvas.height = size;
+    
+    // Update grid size proportionally
+    const scale = size / 400;
+    window.currentGridSize = gridSize * scale;
+}
 
 // Initialize game
 function initGame() {
@@ -75,7 +102,7 @@ function drawGrid() {
     ctx.lineWidth = 1;
     
     // Draw vertical lines
-    for (let x = 0; x <= canvas.width; x += gridSize) {
+    for (let x = 0; x <= canvas.width; x += window.currentGridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, canvas.height);
@@ -83,7 +110,7 @@ function drawGrid() {
     }
     
     // Draw horizontal lines
-    for (let y = 0; y <= canvas.height; y += gridSize) {
+    for (let y = 0; y <= canvas.height; y += window.currentGridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(canvas.width, y);
@@ -105,34 +132,34 @@ function drawSnake() {
 // Draw snake head
 function drawSnakeHead(snakePart) {
     ctx.fillStyle = '#3a8dde';
-    ctx.fillRect(snakePart.x * gridSize, snakePart.y * gridSize, gridSize, gridSize);
+    ctx.fillRect(snakePart.x * window.currentGridSize, snakePart.y * window.currentGridSize, window.currentGridSize, window.currentGridSize);
     ctx.strokeStyle = '#1a2233';
     ctx.lineWidth = 2;
-    ctx.strokeRect(snakePart.x * gridSize, snakePart.y * gridSize, gridSize, gridSize);
+    ctx.strokeRect(snakePart.x * window.currentGridSize, snakePart.y * window.currentGridSize, window.currentGridSize, window.currentGridSize);
     
     // Draw eyes
     ctx.fillStyle = 'white';
-    ctx.fillRect(snakePart.x * gridSize + 4, snakePart.y * gridSize + 4, 3, 3);
-    ctx.fillRect(snakePart.x * gridSize + 13, snakePart.y * gridSize + 4, 3, 3);
+    ctx.fillRect(snakePart.x * window.currentGridSize + 4, snakePart.y * window.currentGridSize + 4, 3, 3);
+    ctx.fillRect(snakePart.x * window.currentGridSize + 13, snakePart.y * window.currentGridSize + 4, 3, 3);
     ctx.fillStyle = '#1a2233';
-    ctx.fillRect(snakePart.x * gridSize + 5, snakePart.y * gridSize + 5, 1, 1);
-    ctx.fillRect(snakePart.x * gridSize + 14, snakePart.y * gridSize + 5, 1, 1);
+    ctx.fillRect(snakePart.x * window.currentGridSize + 5, snakePart.y * window.currentGridSize + 5, 1, 1);
+    ctx.fillRect(snakePart.x * window.currentGridSize + 14, snakePart.y * window.currentGridSize + 5, 1, 1);
 }
 
 // Draw snake body
 function drawSnakeBody(snakePart) {
     ctx.fillStyle = '#5ec6fa';
-    ctx.fillRect(snakePart.x * gridSize, snakePart.y * gridSize, gridSize, gridSize);
+    ctx.fillRect(snakePart.x * window.currentGridSize, snakePart.y * window.currentGridSize, window.currentGridSize, window.currentGridSize);
     ctx.strokeStyle = '#3a8dde';
     ctx.lineWidth = 1;
-    ctx.strokeRect(snakePart.x * gridSize, snakePart.y * gridSize, gridSize, gridSize);
+    ctx.strokeRect(snakePart.x * window.currentGridSize, snakePart.y * window.currentGridSize, window.currentGridSize, window.currentGridSize);
 }
 
 // Create food
 function createFood() {
     food = {
-        x: Math.floor(Math.random() * (canvas.width / gridSize)),
-        y: Math.floor(Math.random() * (canvas.height / gridSize))
+        x: Math.floor(Math.random() * (canvas.width / window.currentGridSize)),
+        y: Math.floor(Math.random() * (canvas.height / window.currentGridSize))
     };
 
     // Check if food is on snake
@@ -147,10 +174,10 @@ function createFood() {
 // Draw food
 function drawFood() {
     ctx.fillStyle = '#FF5722';
-    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+    ctx.fillRect(food.x * window.currentGridSize, food.y * window.currentGridSize, window.currentGridSize, window.currentGridSize);
     ctx.strokeStyle = '#E64A19';
     ctx.lineWidth = 2;
-    ctx.strokeRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+    ctx.strokeRect(food.x * window.currentGridSize, food.y * window.currentGridSize, window.currentGridSize, window.currentGridSize);
 }
 
 // Move snake
@@ -186,9 +213,23 @@ function moveSnake() {
 }
 
 // Change direction
-function changeDirection(event) {
+function changeDirection(newDirection) {
     if (!gameRunning || changingDirection) return;
     
+    // Prevent reverse direction
+    if ((newDirection === 'up' && direction === 'down') ||
+        (newDirection === 'down' && direction === 'up') ||
+        (newDirection === 'left' && direction === 'right') ||
+        (newDirection === 'right' && direction === 'left')) {
+        return;
+    }
+    
+    direction = newDirection;
+    changingDirection = true;
+}
+
+// Keyboard controls
+function handleKeyDown(event) {
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
     const UP_KEY = 38;
@@ -196,40 +237,53 @@ function changeDirection(event) {
 
     const keyPressed = event.keyCode;
     
-    // Check if the pressed key is an arrow key
-    if (keyPressed === LEFT_KEY || keyPressed === RIGHT_KEY || 
-        keyPressed === UP_KEY || keyPressed === DOWN_KEY) {
-        event.preventDefault(); // Prevent default browser behavior (scrolling)
+    if (keyPressed === LEFT_KEY) {
+        changeDirection('left');
+    } else if (keyPressed === RIGHT_KEY) {
+        changeDirection('right');
+    } else if (keyPressed === UP_KEY) {
+        changeDirection('up');
+    } else if (keyPressed === DOWN_KEY) {
+        changeDirection('down');
     }
+}
 
-    changingDirection = true;
-
-    const goingUp = direction === 'up';
-    const goingDown = direction === 'down';
-    const goingRight = direction === 'right';
-    const goingLeft = direction === 'left';
-
-    if (keyPressed === LEFT_KEY && !goingRight) {
-        direction = 'left';
-    }
-    if (keyPressed === UP_KEY && !goingDown) {
-        direction = 'up';
-    }
-    if (keyPressed === RIGHT_KEY && !goingLeft) {
-        direction = 'right';
-    }
-    if (keyPressed === DOWN_KEY && !goingUp) {
-        direction = 'down';
-    }
+// Touch controls
+function setupTouchControls() {
+    upBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('up');
+    }, { passive: false });
+    
+    downBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('down');
+    }, { passive: false });
+    
+    leftBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('left');
+    }, { passive: false });
+    
+    rightBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        changeDirection('right');
+    }, { passive: false });
+    
+    // Mouse controls for desktop testing
+    upBtn.addEventListener('click', () => changeDirection('up'));
+    downBtn.addEventListener('click', () => changeDirection('down'));
+    leftBtn.addEventListener('click', () => changeDirection('left'));
+    rightBtn.addEventListener('click', () => changeDirection('right'));
 }
 
 // Check collision
 function checkCollision() {
     // Check collision with walls
     const hitLeftWall = snake[0].x < 0;
-    const hitRightWall = snake[0].x > canvas.width / gridSize - 1;
+    const hitRightWall = snake[0].x > canvas.width / window.currentGridSize - 1;
     const hitTopWall = snake[0].y < 0;
-    const hitBottomWall = snake[0].y > canvas.height / gridSize - 1;
+    const hitBottomWall = snake[0].y > canvas.height / window.currentGridSize - 1;
 
     if (hitLeftWall || hitRightWall || hitTopWall || hitBottomWall) {
         gameOver = true;
@@ -268,9 +322,21 @@ function drawGame() {
 }
 
 // Event listeners
-document.addEventListener('keydown', changeDirection);
+document.addEventListener('keydown', handleKeyDown);
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', restartGame);
 
 // Initialize game on load
+setupResponsiveCanvas();
 initGame();
+
+// Setup touch controls
+setupTouchControls();
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    setupResponsiveCanvas();
+    if (!gameRunning) {
+        drawGame();
+    }
+});
